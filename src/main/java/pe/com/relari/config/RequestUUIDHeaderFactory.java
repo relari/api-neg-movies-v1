@@ -9,6 +9,14 @@ import jakarta.ws.rs.core.MultivaluedHashMap;
 import jakarta.ws.rs.core.MultivaluedMap;
 import java.util.UUID;
 
+/**
+ * <b>Class:</b> RequestUUIDHeaderFactory.<br/>
+ * <b>Description:</b> REST client headers factory that injects a request UUID and propagates
+ * the incoming Authorization header to outbound REST client calls. Used by MicroProfile
+ * Rest Client via {@code @RegisterClientHeaders}.
+ *
+ * @author Relari
+ */
 @ApplicationScoped
 public class RequestUUIDHeaderFactory implements ClientHeadersFactory {
 

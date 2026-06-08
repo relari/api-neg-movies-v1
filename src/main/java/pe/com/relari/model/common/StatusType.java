@@ -1,10 +1,12 @@
 package pe.com.relari.model.common;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-@Getter
-@AllArgsConstructor
+/**
+ * <b>Class:</b> StatusType.<br/>
+ * <b>Description:</b> Enumeration representing the high-level response status used in
+ * {@code ApiResponse} (OK, SUCCESS, ERROR).
+ *
+ * @author Relari
+ */
 public enum StatusType {
-    OK, ERROR
+    OK, SUCCESS, ERROR
 }
