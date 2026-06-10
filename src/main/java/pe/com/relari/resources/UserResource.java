@@ -6,6 +6,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import lombok.RequiredArgsConstructor;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.jboss.logging.Logger;
 import pe.com.relari.dao.ws.JsonPlaceHolderApi;
@@ -23,17 +24,14 @@ import java.util.List;
  * @author Relari
  */
 @Path("/v1/users")
+@RequiredArgsConstructor
 public class UserResource {
 
   private static final Logger log = Logger.getLogger(UserResource.class);
 
-  JsonPlaceHolderApi jsonPlaceHolderApi;
+  @RestClient
+  private final JsonPlaceHolderApi jsonPlaceHolderApi;
 
-  @Inject
-  public UserResource(@RestClient JsonPlaceHolderApi jsonPlaceHolderApi) {
-    this.jsonPlaceHolderApi = jsonPlaceHolderApi;
-  }
-  
   @GET
   @Path("/{id}")
   @Produces(MediaType.APPLICATION_JSON)
