@@ -1,0 +1,40 @@
+quarkus:
+  log:
+    level: INFO
+    category:
+      "org.apache.http":
+        level: TRACE
+  rest-client:
+    logging:
+      scope: request-response
+      body-limit: 1024
+    json-place-holder-api:
+      url: https://jsonplaceholder.typicode.com
+      scope: jakarta.inject.Singleton
+      connect-timeout: 5000
+      read-timeout: 5000
+  datasource:
+    db-kind: h2
+    jdbc:
+      url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1
+      username: sa
+      password: ""
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+    log:
+      sql: true
+    sql-format: true
+
+  dev-ui:
+    enabled: true
+
+greeting:
+  message: Hello World
+
+app:
+  error:
+    default-message: Generic error message
+    status: 500
+  version: 1.0.0
+  name: Quarkus Application

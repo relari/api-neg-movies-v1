@@ -2,6 +2,8 @@ package pe.com.relari.service.impl;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import java.util.List;
+import java.util.Objects;
+
 import lombok.RequiredArgsConstructor;
 import org.jboss.logging.Logger;
 import pe.com.relari.dao.MovieDao;
@@ -47,6 +49,7 @@ public class MovieServiceImpl implements MovieService {
   public Movie getMovie(Integer id) {
     log.infof("Find movie with id = %s", id);
     return movieDao.getMovie(id)
+            .filter(Objects::nonNull)
         .map(movieEntity -> {
           Movie movie = new Movie();
           movie.setId(movieEntity.id.intValue());
