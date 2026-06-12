@@ -1,6 +1,9 @@
 package pe.com.relari.config;
 
 import io.smallrye.config.ConfigMapping;
+import pe.com.relari.error.model.ErrorCategory;
+
+import java.util.Map;
 
 /**
  * <b>Class:</b> ErrorProperties.<br/>
@@ -9,10 +12,12 @@ import io.smallrye.config.ConfigMapping;
  * @author Relari
  */
 
-@ConfigMapping(prefix = "app.error")
+@ConfigMapping(prefix = "application.errors")
 public interface ErrorProperties {
 
   String defaultMessage();
   Integer status();
+  String code();
+  Map<String, ErrorCategory> categories();
 
 }

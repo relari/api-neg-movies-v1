@@ -7,7 +7,7 @@ quarkus:
   jackson:
     serialization-inclusion: non-null
   http:
-    root-path: /api/neg
+    root-path: /api/neg/v1
 #    port: 8092
 
   smallrye-openapi:

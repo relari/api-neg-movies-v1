@@ -3,12 +3,11 @@ package pe.com.relari.service.impl;
 import jakarta.enterprise.context.ApplicationScoped;
 import java.util.List;
 import java.util.Objects;
-
 import lombok.RequiredArgsConstructor;
 import org.jboss.logging.Logger;
 import pe.com.relari.dao.MovieDao;
 import pe.com.relari.dao.repository.MovieEntity;
-import pe.com.relari.handler.ApiException;
+import pe.com.relari.error.ApiException;
 import pe.com.relari.model.api.Movie;
 import pe.com.relari.model.common.ErrorType;
 import pe.com.relari.service.MovieService;
@@ -17,7 +16,7 @@ import pe.com.relari.service.MovieService;
  * <b>Class:</b> MovieServiceImpl.<br/>
  * <b>Description:</b> Default implementation of {@code MovieService}. It retrieves movie
  * entities through {@code MovieDao}, maps them to API DTOs and enforces business rules
- * such as throwing {@link pe.com.relari.handler.ApiException} when resources are not found.
+ * such as throwing {@link pe.com.relari.error.ApiException} when resources are not found.
  *
  * @author Relari
  */
@@ -58,8 +57,9 @@ public class MovieServiceImpl implements MovieService {
           movie.setDirector(movieEntity.getDirector());
           return movie;
         })
-        .orElseThrow(() -> new ApiException(ErrorType.RESOURCE_NOT_FOUND, "Movie not found: " + id));
+        .orElseThrow(() -> new ApiException("MOVIE_NOT_FOUND"));
   }
+
   @Override
   public void saveMovie(Movie movie) {
     log.infof("Save movie with title = %s", movie.getTitle());

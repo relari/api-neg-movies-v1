@@ -22,7 +22,7 @@ import pe.com.relari.service.MovieService;
  * @author Relari
  */
 @Slf4j
-@Path("/v1/movies")
+@Path("/movies")
 @RequiredArgsConstructor
 public class MovieResource {
 
@@ -31,7 +31,8 @@ public class MovieResource {
   @GET
   @Produces(MediaType.APPLICATION_JSON)
   public Response getMovies(
-      @BeanParam ApiHeaders headers) {
+          @Context HttpHeaders headers) {
+    log.info(headers.getHeaderString("Authorization"));
     return ApiResponse.okResponse(service.getMovies());
   }
 

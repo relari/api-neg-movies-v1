@@ -2,6 +2,10 @@ quarkus:
   log:
     level: INFO
     category:
+      "io.quarkus.rest.client":
+        level: DEBUG
+      "pe.com.relari":
+        level: DEBUG
       "org.apache.http":
         level: TRACE
   rest-client:
@@ -32,9 +36,31 @@ quarkus:
 greeting:
   message: Hello World
 
-app:
-  error:
-    default-message: Generic error message
-    status: 500
+application:
   version: 1.0.0
   name: Quarkus Application
+  errors:
+    default-message: Generic error message
+    status: 500
+    code: MV
+    categories:
+      MOVIE_NOT_FOUND:
+        code: 'MV001'
+        description: 'Movie not found.'
+        status: 404
+      MOVIE_SAVE_FAILED:
+        code: 'MV002'
+        description: 'Error saving the movie.'
+        status: 500
+      MOVIE_UPDATE_FAILED:
+        code: 'MV003'
+        description: 'Error updating the movie.'
+        status: 500
+      MOVIE_NOT_INACTIVATED:
+        code: 'EM004'
+        description: 'Movie no inactivado.'
+        status: 409
+      MOVIE_NOT_ACTIVATED:
+        code: 'EM005'
+        description: 'Movie no activado.'
+        status: 409

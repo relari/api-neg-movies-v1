@@ -1,7 +1,6 @@
-package pe.com.relari.handler;
+package pe.com.relari.error;
 
 import lombok.Getter;
-import pe.com.relari.model.common.ErrorType;
 
 /**
  * <b>Class:</b> ApiException.<br/>
@@ -14,16 +13,18 @@ import pe.com.relari.model.common.ErrorType;
 @Getter
 public class ApiException extends RuntimeException {
 
-  private final ErrorType errorType;
+//  private final ErrorType errorType;
+  private final String catalog;
 
-  public ApiException(ErrorType errorType, String message) {
-    super(message);
-    this.errorType = errorType;
+
+  public ApiException(String catalog) {
+    super();
+    this.catalog = catalog;
   }
 
-  public ApiException(ErrorType errorType, String message, Throwable cause) {
-    super(message, cause);
-    this.errorType = errorType;
+  public ApiException(String catalog, String message) {
+    super(message);
+    this.catalog = catalog;
   }
 
 }

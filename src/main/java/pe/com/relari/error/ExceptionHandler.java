@@ -1,4 +1,4 @@
-package pe.com.relari.handler;
+package pe.com.relari.error;
 
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
@@ -25,8 +25,13 @@ public class ExceptionHandler implements ExceptionMapper<ApiException> {
   private final ErrorProperties errorProperties;
 
   @Override
-  public Response toResponse(ApiException exception) {
-    return ApiResponse.errorResponse(exception.getErrorType(), exception.getMessage());
+  public Response toResponse(ApiException apiException) {
+    var errorCategory = errorProperties.categories().get(apiException.getCatalog());
+
+    log.errorf(apiException, "[ApiException] {} - Message: {}",
+            apiException.getCatalog(), apiException.getMessage());
+
+    return ApiResponse.errorResponse(errorCategory);
   }
 
 }

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pe.com.relari.error.model.ErrorCategory;
+import pe.com.relari.error.model.ErrorResponse;
 
 /**
  * <b>Class:</b> ApiResponse.<br/>
@@ -39,14 +41,14 @@ public class ApiResponse<T> {
   /**
    * Build an error JAX-RS response based on the application's {@link ErrorType} and message.
    *
-   * @param errorType error type enumeration containing the HTTP status
-   * @param message human-readable error message
+   * @param statusCode error type enumeration containing the HTTP status
+   * @param data human-readable error message
    * @return JAX-RS {@link Response} with the corresponding error status and payload
    */
-  public static Response errorResponse(ErrorType errorType, String message) {
-    return Response.status(errorType.getStatus())
+  public static Response errorResponse(ErrorCategory errorCategory) {
+    return Response.status(errorCategory.status())
             .entity(new ApiResponse<>(
-                    StatusType.ERROR, errorType.getStatus(), new ErrorResponse(errorType, message)
+                    StatusType.ERROR, errorCategory.status(), new ErrorResponse(errorCategory)
             ))
             .build();
   }

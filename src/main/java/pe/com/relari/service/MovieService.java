@@ -1,7 +1,6 @@
 package pe.com.relari.service;
 
 import java.util.List;
-
 import pe.com.relari.model.api.Movie;
 
 /**

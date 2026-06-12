@@ -1,6 +1,5 @@
 package pe.com.relari.resources;
 
-import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
@@ -8,7 +7,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import lombok.RequiredArgsConstructor;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
-import org.jboss.logging.Logger;
 import pe.com.relari.dao.ws.JsonPlaceHolderApi;
 import pe.com.relari.dao.ws.model.UserResponse;
 
@@ -23,11 +21,9 @@ import java.util.List;
  *
  * @author Relari
  */
-@Path("/v1/users")
+@Path("/users")
 @RequiredArgsConstructor
 public class UserResource {
-
-  private static final Logger log = Logger.getLogger(UserResource.class);
 
   @RestClient
   private final JsonPlaceHolderApi jsonPlaceHolderApi;
@@ -40,7 +36,6 @@ public class UserResource {
   }
 
   @GET
-  @Path("/")
   @Produces(MediaType.APPLICATION_JSON)
   public List<UserResponse> users() {
     return jsonPlaceHolderApi.users();
